@@ -6,13 +6,15 @@ class HornedBeast extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            clickedFavorite: false
+            clickedFavorite: false,
+            favoriteCount: 0
         };
     };
 
     handleFavorite = () => {
         this.setState({
-            clickedFavorite: this.state.clickedFavorite ? false : true
+            clickedFavorite: true,
+            favoriteCount: this.state.favoriteCount + 1
         })
     };
 
@@ -27,7 +29,7 @@ class HornedBeast extends React.Component {
                         title={this.props.title}
                         height={200}
                         onClick={this.handleFavorite}/>
-                    {this.state.clickedFavorite ? <Card.Text>Favorited: 👍</Card.Text> : <Card.Text>Not Favorited: 👎</Card.Text>}
+                    {this.state.clickedFavorite ? <Card.Text>Favorited: 👍 {this.state.favoriteCount} </Card.Text> : <Card.Text>Not Favorited: 👎</Card.Text>}
                 </Card>
             </div>
         )
