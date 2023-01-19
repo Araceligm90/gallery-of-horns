@@ -1,0 +1,10 @@
+.card {
+    height: calc(100vh / 1.9);
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.col {
+    margin-bottom: 2rem;
+}
