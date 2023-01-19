@@ -1,6 +1,7 @@
 import React from "react";
 import Card from 'react-bootstrap/Card';
-
+import Col from 'react-bootstrap/Col';
+import '../css/HornedBeast.css';
 
 class HornedBeast extends React.Component {
     constructor(props) {
@@ -18,12 +19,16 @@ class HornedBeast extends React.Component {
         })
     };
 
+    fillAndShowModal = () =>{
+        this.props.handleShowModal(this.props.title, this.props.imageUrl);
+    }
+
     render() {
         return (
-            <div className="beasts">
+            <Col className="beasts">   
                 <Card style={{ width: '18rem' }}>
-                    <Card.Title as='h3' >{this.props.title}</Card.Title>
-                    <Card.Text>{this.props.description}</Card.Text>
+                    <Card.Title onClick={this.fillAndShowModal} as='h3' >{this.props.title}</Card.Title>
+                    <Card.Text onClick={this.fillAndShowModal}>{this.props.description}</Card.Text>
                     <Card.Img src={this.props.imageUrl}
                         alt={this.props.description}
                         title={this.props.title}
@@ -31,8 +36,8 @@ class HornedBeast extends React.Component {
                         onClick={this.handleFavorite}/>
                     {this.state.clickedFavorite ? <Card.Text>Favorited: 👍 {this.state.favoriteCount} </Card.Text> : <Card.Text>Not Favorited: 👎</Card.Text>}
                 </Card>
-            </div>
+            </Col>
         )
     }
-}
+};
 export default HornedBeast
