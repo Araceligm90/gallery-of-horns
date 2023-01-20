@@ -6,6 +6,8 @@ import "./css/App.css"
 import Modal from 'react-bootstrap/Modal';
 import data from "./data.json";
 import Form from 'react-bootstrap/Form';
+import "./css/Fonts.css"
+
 
 
 class App extends React.Component {
