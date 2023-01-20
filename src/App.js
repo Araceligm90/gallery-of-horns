@@ -4,6 +4,8 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import "./css/App.css"
 import Modal from 'react-bootstrap/Modal';
+import data from "./data.json";
+import Form from 'react-bootstrap/Form';
 
 
 class App extends React.Component {
@@ -12,7 +14,8 @@ class App extends React.Component {
     this.state = {
       showModal: false,
       beastName: '',
-      beastImage: ''
+      beastImage: '',
+      beastsData: data
     }
   }
 
@@ -30,16 +33,57 @@ class App extends React.Component {
     })
   }
 
+  updateBeastsData = (e) => {
+    e.preventDefault();
+    const horns = e.target.value;
+    let updatedData;
+
+    if(horns === '') {
+      updatedData = data;
+    }
+    else if (horns === '1') {
+      updatedData = data.filter(beast => beast.horns === parseInt(horns));
+    }
+    else if (horns === '2') {
+      updatedData = data.filter(beast => beast.horns === parseInt(horns));
+    }
+    else if (horns === '3') {
+      updatedData = data.filter(beast => beast.horns === parseInt(horns));
+    }
+    else if (horns === '100') {
+      updatedData = data.filter(beast => beast.horns === parseInt(horns));
+    }
+
+    this.setState({
+      beastsData: updatedData
+    })
+
+  }
 
 
   render() {
     return (
       <>
         <Header />
+        <Form>
+          <Form.Group>
+            <Form.Select onChange={this.updateBeastsData}>
+              <option value={''}>All my beasts</option>
+              <option value={'1'}>One-horned beasts</option>
+              <option value={'2'}>Two-horned beasts</option>
+              <option value={'3'}>Three-horned beasts</option>
+              <option value={'100'}>One hundred-horned beasts!</option>
+            </Form.Select>
+          </Form.Group>
+        </Form>
+
+
+
         <Main
           handleShowModal={this.handleShowModal}
+          data={this.state.beastsData}
         />
-        <Footer />
+
         <Modal
           show={this.state.showModal}
           onHide={this.handleCloseModal}>
@@ -49,9 +93,10 @@ class App extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={this.state.beastImage} alt={''} height={250}/>
+            <img src={this.state.beastImage} alt={''} height={250} />
           </Modal.Body>
         </Modal>
+        <Footer />
       </>
     );
   }
